@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Whale Watcher — real-time BTC/USDT institutional trade detection."
+    />
+    <title>Whale Watcher — Real-time Trade Detection</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #04060a;
+      }
+      #loading {
+        position: fixed;
+        inset: 0;
+        background: #04060a;
+        background-image: radial-gradient(
+          circle at 50% 35%,
+          rgba(45, 214, 196, 0.1),
+          transparent 55%
+        );
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        transition: opacity 0.4s ease;
+      }
+      #loading.hide {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .sonar-ring {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 88px;
+        height: 88px;
+        margin-bottom: 18px;
+      }
+      .sonar-ring::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 9999px;
+        background: rgba(45, 214, 196, 0.28);
+        animation: sonar 2.6s ease-out infinite;
+      }
+      .whale {
+        position: relative;
+        font-size: 40px;
+        animation: float 3s ease-in-out infinite;
+      }
+      .loading-title {
+        font-family: "Space Grotesk", sans-serif;
+        color: #2dd6c4;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+      .loading-sub {
+        font-family: "Inter", sans-serif;
+        color: #697089;
+        margin-top: 8px;
+        font-size: 13px;
+        letter-spacing: 0.02em;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      @keyframes sonar {
+        0% {
+          transform: scale(0.6);
+          opacity: 0.7;
+        }
+        100% {
+          transform: scale(2.6);
+          opacity: 0;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .whale,
+        .sonar-ring::before {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="loading">
+      <div class="sonar-ring">
+        <div class="whale">🐋</div>
+      </div>
+      <div class="loading-title">Whale Watcher</div>
+      <div class="loading-sub">Connecting to the feed…</div>
+    </div>
+    <div id="root"></div>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        setTimeout(() => {
+          document.getElementById("loading")?.classList.add("hide");
+        }, 900);
+      });
+    </script>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
