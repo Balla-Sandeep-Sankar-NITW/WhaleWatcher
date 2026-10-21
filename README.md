@@ -24,5 +24,3 @@ A real-time cryptocurrency monitoring application designed to detect high-value 
 * **Data & APIs:** Blockchain WebSockets / REST APIs (Mempool.space, Blockchair, or CoinGecko)
 * **Deployment:** Vercel
 
-
-```
